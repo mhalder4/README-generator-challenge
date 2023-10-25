@@ -27,8 +27,8 @@ const questions = [
   },
   {
     type: "input",
-    message: "Enter the contributions for your project:",
-    name: "contributions"
+    message: "Enter the credits for your project:",
+    name: "credits"
   },
   {
     type: "input",
@@ -55,16 +55,18 @@ const questions = [
 ];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) { }
+function writeToFile(fileName, data) {
+  fs.writeFile(`${fileName}.md`, data, (err) => err ? console.log(err) : console.log(`File ${fileName}.md was created successfully.`));
+}
 
 // TODO: Create a function to initialize app
 function init() {
   inquirer
     .prompt(questions)
     .then(answers => {
-      const md = generateMarkdown(answers);
+      const mdFile = generateMarkdown(answers);
       console.log(answers);
-      console.log(md);
+      writeToFile("README", mdFile);
     })
 }
 
