@@ -38,7 +38,7 @@ const questions = [
   {
     type: "list",
     message: "Select the license for your project from below.",
-    choices: ["MIT"],
+    choices: ["GNU Affero General Public License v3.0", "GNU GPLv3.0", "GNU LGPLv3.0", "Mozilla Public License 2.0", "Apache License 2.0", "MIT License", "Boost Software License 1.0", "The Unlicense", "No license"],
     name: "license"
   },
   {
