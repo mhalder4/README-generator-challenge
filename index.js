@@ -72,3 +72,22 @@ function init() {
 
 // Function call to initialize app
 init();
+
+
+/*
+My README generation for this project
+
+Project Title: 
+  README Generator Challenge
+Description: 
+  This project is a README generator that takes answers from the user to create a professional README file.
+Install: 
+  The pertinent files for the project, including this README can all be found in the Github repository located at: https://github.com/mhalder4/README-generator-challenge.
+Usage: 
+  This program runs in the terminal using Node.JS and two Node packages. When the file is started, inquirer asks the user a series of questions regarding the desired content of their README. Once all the questions have been answered, a Markdown file is created for the README in the same folder as the original file.
+Credits: N/A
+Tests: N/A
+License: MIT
+GitHub Username: mhalder4
+Email: placeholder.email@gmail.com
+*/

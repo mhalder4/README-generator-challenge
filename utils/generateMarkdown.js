@@ -50,7 +50,7 @@ const licenses = [
     url: "unlicense",
     badge: "The_Unlicense-grey",
     text: "the-unlicense"
-  },
+  }
 ]
 
 function findLicense(data) {
@@ -60,18 +60,27 @@ function findLicense(data) {
 
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
+  if (!license) {
+    return "";
+  }
   return `![Static Badge](https://img.shields.io/badge/${license.badge})`;
 }
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
+  if (!license) {
+    return "";
+  }
   return `[${license.name}](https://choosealicense.com/licenses/${license.url}/)`
 }
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
+  if (!license) {
+    return "";
+  }
   const licenseText = fs.readFileSync(`./assets/licenses/${license.text}.txt`, "utf8", (error, data) => {
     if (error) {
       console.log(error);
@@ -81,7 +90,6 @@ function renderLicenseSection(license) {
   }
   );
 
-  console.log(licenseText);
   return licenseText;
 }
 
@@ -98,33 +106,21 @@ function generateMarkdown(data) {
 
   const toc = "## Table of Contents\n- [Installation](#installation)\n- [Usage](#usage)\n- [Credits](#credits)\n- [License](#license)\n- [Questions](#questions)\n- [Tests](#tests)\n";
 
-  const installation = `## Installation\n${data.install}\n`
-  const usage = `## Usage\n${data.usage}\n`
-  const credits = `## Credits\n${data.credits}\n`
+  const installation = `## Installation\n${data.install}\n`;
+  const usage = `## Usage\n${data.usage}\n`;
+  const credits = `## Credits\n${data.credits}\n`;
 
   const licenseLink = renderLicenseLink(foundLicense);
-
   const licenseText = renderLicenseSection(foundLicense);
+  const license = `## License\n${licenseLink}\n${licenseText}\n`;
 
+  const questions = `## Questions\nFind me on [GitHub](https://github.com/${data.gitHubUser})
+  OR
+  [Email Me](mailto:${data.email})\n`;
 
-  return title + description + toc + installation + usage + credits + `
-## License
+  const tests = `## Tests\n${data.tests}\n`;
 
-${licenseLink}
-
-${licenseText}
-
-## Questions
-
-Find me on [GitHub](https://github.com/${data.gitHubUser})
-OR
-[Email Me](mailto:${data.email})
-
-## Tests
-
-${data.tests}
-
-`;
+  return title + description + toc + installation + usage + credits + license + questions + tests;
 }
 
 module.exports = { generateMarkdown };
